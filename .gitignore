@@ -64,11 +64,5 @@ release
 *.prof
 *.out
 
-# Binaries
-/skycoind
-/skycoin
-/skycoindev
-/blockchain
-/generate_cert
-
 *.pem
+*.bak
