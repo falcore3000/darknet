@@ -41,12 +41,6 @@ Security:
 User Stories: Link Aggregation
 ===============================
 
-Bob has a 2 Mb/s internet connection and cannot watch Youtube videos. Bob and his five neighbors with 2 Mb/s connections install Skycoin nodes
-
-
-User Stories: Link Aggregation
-===============================
-
 Bob has a 2 Mb/s internet connection and it takes minutes ot load Youtube videos. Bob and his five neighbors with 2 Mb/s connections install Skycoin nodes. Bob's Skycoin node aggregates bandwidth across the five neighboring nodes and acts as a 12 Mb/s connection.
 
 Bob receives Skycoin for relaying traffic and expends Skycoin for using network resources.
@@ -74,3 +68,8 @@ Alice's ISP has begun tracking every website she visits, recording her personal 
 Alice hears about Skycoin, finds another Skycoin user with an office in the colocation center. Alice pays $1500 and installs a 1.4 Gb/second, 24 GHz Ubiquiti airFiber to bridge the distance between her and the fiber backbone.  Alice's connection acts as the backhaul for her neighborhood's local Skycoin mesh.
 
 Alice cancels her internet service.
+
+User Story: Internet Kill Switch
+=================================
+
+Todo
