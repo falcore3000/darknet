@@ -3,13 +3,44 @@
 Darknet Plan
 ============
 
-The Skycoin darknet is designed for a world where net neutrality has failed. A world where monoplistic government granted monopolies have become the gate keepers to the internet.
+The Skycoin darknet is designed for a world where net neutrality has failed. A world where monoplistic cable companies have become the gate keepers to the internet.
 
-The Skycoin darknet emphasizes security, speed and privacy and is designed specificly for deploying open access wifi mesh networks and community ISPs.
+The Skycoin Darknet is a technological response to ACTA, PIPA, SOPA and the Comcast, Time Warner Merger. The proticol is designed to bridge the last mile between fiber and the home and eliminate reliance upon monopolistic ISPs.
 
-The Skycoin routing layer is a technological response to ACTA, PIPA, SOPA and the Comcast Time Warner Merger. The proticol is designed to bridge the last mile between fiber and the home and eliminate reliance upon monopolistic ISPs.
+The Skycoin darknet is designed specificly for deploying open access wifi mesh networks and community ISPs. The network operates over fixed position point-to-point wifi connections using commodity hardware and the legacy internet.
+
+Users receive Skycoin for contributing resources to the network and expend Skycoin for using network resources.
 
 Network deployment will begin by July.
+
+
+Hardware
+========
+
+For development, we are using the following
+
+Platforms:
+- Debian
+- Raspberry PI
+- Beagle Boards
+
+Wifi Devices:
+- Edimax EW-7811Un (good linux support)
+- TP-LINK TL-WN722N (external antenna support for long distance directional links)
+
+Directional Antenna:
+- TP-LINK TL-ANT2424B 24dBi 60 cm Directional Grid Parabolic Antenna
+- see: http://fabfi.fabfolk.com/
+
+Project Milestones
+==================
+
+1. Two Raspberry PIs running nodes are connected to two different cable modems. A third computer connects to the Raspberry PIs via wifi and is able to aggregate bandwidth over both connections.
+2. First coins are exchanged for network traffic
+
+
+Technical Objectives
+====================
 
 Implementation Details:
 - prototype in Golang
@@ -18,10 +49,10 @@ Implementation Details:
 
 Design Goals:
 - Open Access Wifi mesh networks
-- resistant to latency, high packet loss and low reliability connections
 - coin incentives for provisioning bandwidth, storage and backhaul
 - Designed to bridge last mile between the network backbone and home
-- runs on Rasberry Pi and Ubibuity Hardware
+- resistant to latency, high packet loss and low reliability connections
+- runs on Rasberry Pi and Ubiquity Hardware
 - "zeroconf". Plug in and runs, no configuration
 - difficult to detect and throttle
 
@@ -29,7 +60,7 @@ Technical Aspects:
 - uses pubkey hashes as network addresses
 - instant, low overhead, distributed bandwidth micropayments using off blockchain transactions
 - link layer, does not define routing
-- store and forward
+- store and forward?
 - compatibility bridge with IPv6 networks
 - Link Aggregation (ability to aggregate bandwidth from multiple connections)
 
@@ -65,7 +96,7 @@ Alice's Youtube and Netflix videos are loading slower than ever before. Alice's 
 
 Alice's ISP has begun tracking every website she visits, recording her personal information and selling it to the NSA and marketing companies. Alice's ISP has been stealing revenue from the websites Alice visits, by replacing the website's ads with its own advertisements. Alice's ISP is starting to blacklist websites it doesnt like.
 
-Alice hears about Skycoin, finds another Skycoin user with an office in the colocation center. Alice pays $1500 and installs a 1.4 Gb/second, 24 GHz Ubiquiti airFiber to bridge the distance between her and the fiber backbone.  Alice's connection acts as the backhaul for her neighborhood's local Skycoin mesh.
+Alice hears about Skycoin, finds another Skycoin user with an office in the colocation center. Alice pays $1500 and installs 1.4 Gb/second Ubiquity airFiber hardware to bridge the distance between her and the fiber backbone.  Alice's connection acts as the backhaul for her neighborhood's local Skycoin mesh.
 
 Alice cancels her internet service.
 
