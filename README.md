@@ -90,7 +90,7 @@ Alice's internet speed is 2 Mb/s. Alice had cheaper, faster internet, before the
 
 After the merger the CFO stated "people dont want faster internet", raised prices and put in place bandwidth caps. Alice pays $0.30 per GB for going over her 100 GB bandwidth cap.
 
-Alice's ISP has been getting worse after net neutrality was struck down by a secret backdoor international trade agreement, which supercedes the constition and that even members of congress were not allowed to see or vote on before it was signed.
+Alice's ISP has been getting worse after net neutrality was struck down by a secret backdoor international trade agreement, that even members of congress were not allowed to see or vote on before it was signed.
 
 Alice's Youtube and Netflix videos are loading slower than ever before. Alice's ISP has started throttling Netflix, Youtube and Bitorrent while publicly denying it. 
 
