@@ -69,6 +69,36 @@ Security:
 - End to End Encryption
 - Post Public Key encryption primitives
 
+Privacy
+=======
+
+A user operating a Skycoin Wifi access point allows any user in range to connect through that access point. The access point operator cannot determine the nature of the traffic passing through the access point because it is encrypted. Furthermore the recipient of the traffic is unable to determine that the path of the traffic passed through the access point.
+
+This effectively removes legal liability for operating public access points. The operator neither has any information about the traffic being relayed nor can the recipient of traffic identify the operator of the network entry point.
+
+Furthermore, with the addition of a mandatory hop (a "guard node") it is impossible for ISPs to easily identify that Skycoin Darknet traffic from a particular public access point has been relayed through a particular cable modem.
+
+Summary:
+- Skycoin Darknet Wifi access points are public by default
+- Access point operators cannot see contents of traffic routed through the access point
+- Access point operators cannot see the destination of traffic routed through the access point
+- The recipient of traffic cannot determine the origin or path the data traveled through the network
+- Using "guard nodes" ISPs cannot determine that traffic from a particular access point is being relayed through a particular terminating connection (cable modem)
+
+Tradeoffs
+=========
+
+The Skycoin Darknet proticol is low latency, high throughput and offers a greater degree of privacy than previous systems. However to achieve these goals, several tradeoffs were necessary.
+
+1. Routing decisions are pushed to the origin node instead of the network
+2. Rasberry PIs can only forward 150 Mb/s of second of traffic due to encryption overhead. FGPA hardware could accelerate this to GB/s.
+3. The network has the best performance and lowest overhead for large, latency insensitive transfers. Torrents will do very very well over network.
+4. Real time applications sending many small packets will function over network, but incur larger overhead than TCP/IP. The theoretical latency and "jitter" in latency is lower than for TCP/IP, but with higher bandwidth requirements for real time applications such as VOIP.
+5. Bandwidth microtransaction pollute the blockchain. Therefore we are relying on trusted third parties for low overhead off-blockchain microtransactions for bandwidth confidence payments.
+6. Since routing decisions are pushed back to the origin client, clients must maintain routing tables or rely upon 3rd party servers for routing information.
+7. Store and Forward operation increases network throughput and reliability, but degrades quality of service for real time applications. Store and Forward operation introduces additional ram and storage requirements on nodes, which may tax the capacity of traditional routers.
+8. Nodes that interface between the Skycoin Darknet and traditional internet may suffer the same problems as Tor exit nodes. Most tor exit nodes are blacklisted for editing wikipedia or creating user accounts on websites due to spam issues. To maintain a high quality of service, exit nodes may require trust relationships, payment or user registration to prevent abuse.
+
 User Stories: Link Aggregation
 ===============================
 
