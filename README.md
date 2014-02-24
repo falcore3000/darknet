@@ -85,6 +85,23 @@ Summary:
 - The recipient of traffic cannot determine the origin or path the data traveled through the network
 - Using "guard nodes" ISPs cannot determine that traffic from a particular access point is being relayed through a particular terminating connection (cable modem)
 
+
+Q&A
+===
+
+Why not Bitcoin? Why build the network on a new coin?
+
+We see no advantage in developing the darknet routing proticol on a Bitcoin payment system and there are several disadvantages compared to emerging alternatives.
+
+- Bitcoin does not offer developers and early adapters the economic rewards of a new coin.
+- Bitcoin cannot fund the required infrastructure investments. The Bitcoin community has been fundamentally unable to fund critical infrastructure projects. Infrastructure projects such as coinjoin have been absymal failures at raising funds for development. The project must be self funding to succeed and cannot rely upon donations from the Bitcoin community.
+- Bitcoin has numerous security issues such as transaction malleability and hash collisions in coinbase outputs which fundamentally cannot be fixed or have been monkey patched. Skycoin fixes all known security and usability issues in Bitcoin.
+- The Bitcoin blockchain is bloated. The blockchain size is too large for embedded devices and growing exponentially. When the Bitcoin blocksize limit is lifted, Bitcoin may become unusable for average users. Skycoin supports unspent output snapshots and takes measures to ensures clients will never require more than 1 GB of storage or RAM to operate.
+- Bitcoin does not support off-blockchain transactions required for bandwidth confidence micropayment. Skycoin supports instant, free, low overhead, local microtransactions that do not pollute the blockchain. This is expecially important for maintaining network operation in environments where global blockchain consensus is disrupted by lose of global internet connectivity in target countries.
+- Bitcoin fees are too high for bandwidth micropayments. Bitcoin fees are currently around 10 cents per transaction and increasing. Skycoin payments are "free", with fees paid in coinhours to limit spam.
+- Bitcoin payments are too slow for bandwidth microtransactions. Bitcoin payments require 10 minutes to clear. Skycoin payments are 40 times faster.
+- Several emerging problems are throwing the long term survival of Bitcoin into question. Bitcoin was a proof-of-concept and an experiment. Satoshi never believed that it would reach as far as it has without being superceded. Bitcoin was a seed of an idea and never intended as its final form.
+
 Tradeoffs
 =========
 
