@@ -69,6 +69,50 @@ Security:
 - End to End Encryption
 - Post Public Key encryption primitives
 
+Proticol Draft
+==============
+
+Here is whole protocol.
+
+The proticol is
+- easy to implement in C
+- simple (no backdoors)
+- fast
+- secure
+- use the minimum number of crytographic primitives
+
+Link Layer:
+- Open TCP socket to remote host. You need their pubkey
+- First packet: encode session key as point on a secp256k1 elliptic curve using peer's public key. encrypt your pubkey with ChaCha20 using the session key. Send packet
+- Response Packet: destination encodes second session key with your public key and sends response packet. This wrapper is encrypted with the ChaCha20 key you sent previously.
+- You now have bidirectional connection to node for sending and receiving data
+- there is seperate session key for each direction of communication
+
+Routing:
+- At each node, a "path" is established. You register next node in path and get 32 bit int. The 32 bit int when prefixed on packet determines the node packet will be forwarded to.
+- Each node decodes the packet and pops off first 4 bytes to determine next node to transport packet to.
+
+Payment for Transport:
+- Nodes keep track of how much traffic goes each way for the route
+- The person intiating the route makes an escrowed "confidence payment" with a 120 byte off block chain Skycoin Transaction.
+- The origin node clears payment with the node every few minutes
+
+Note:
+- route is determined by origin of traffic
+- the destination can communicate back to origin but cannot identify origin node
+- payment overhead is 120 bytes per payment
+- per hop overhead is 20 bytes (exercise for reader: make it constant)
+- public keys are never exposed as plaintext in proticol
+- cannot communicate with node without node public key
+- 32 bit route path prefix information should be obfuscated by shared secret with node
+- packets should be fixed length or multiple of power of 2 for secure applications to resist traffic analysis
+- the pubkey a node is sending from can be thrown away. Destination pubkey hash acts as network address for routing. Destination pubkey only decrypts, never signs. Sucessful decryption of session key is proof of private key possession and identity.
+
+Todo:
+- this is transport layer proticol. Proticol layer over this layer sends traffic over multiple paths to the destination, using fountain coding.
+- since origin determines path, origin can optimize for latency or throughput and other criteria
+- traffic and handshake should be disguised as SSL proticol to deter throttling by ISPs
+
 Privacy
 =======
 
@@ -84,7 +128,6 @@ Summary:
 - Access point operators cannot see the destination of traffic routed through the access point
 - The recipient of traffic cannot determine the origin or path the data traveled through the network
 - Using "guard nodes" ISPs cannot determine that traffic from a particular access point is being relayed through a particular terminating connection (cable modem)
-
 
 Q&A
 ===
