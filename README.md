@@ -5,7 +5,7 @@ Darknet Plan
 
 The Skycoin darknet is designed for a world where net neutrality has failed. A world where monoplistic cable companies have become the gate keepers to the internet.
 
-The Skycoin Darknet is a technological response to ACTA, PIPA, SOPA and the Comcast, Time Warner Merger. The proticol is designed to bridge the last mile between fiber and the home and eliminate reliance upon monopolistic ISPs.
+The Skycoin Darknet is a technological response to ACTA, PIPA, SOPA and the Comcast, Time Warner Merger. The protocol is designed to bridge the last mile between fiber and the home and eliminate reliance upon monopolistic ISPs.
 
 The Skycoin darknet is designed specificly for deploying open access wifi mesh networks and community ISPs. The network operates over fixed position point-to-point wifi connections using commodity hardware and the legacy internet.
 
@@ -69,12 +69,12 @@ Security:
 - End to End Encryption
 - Post Public Key encryption primitives
 
-Proticol Draft
+Protocol Draft
 ==============
 
 Here is whole protocol.
 
-The proticol is
+The protocol is
 - easy to implement in C
 - simple (no backdoors)
 - fast
@@ -102,16 +102,16 @@ Note:
 - the destination can communicate back to origin but cannot identify origin node
 - payment overhead is 120 bytes per payment
 - per hop overhead is 20 bytes (exercise for reader: make it constant)
-- public keys are never exposed as plaintext in proticol
+- public keys are never exposed as plaintext in protocol
 - cannot communicate with node without node public key
 - 32 bit route path prefix information should be obfuscated by shared secret with node
 - packets should be fixed length or multiple of power of 2 for secure applications to resist traffic analysis
 - the pubkey a node is sending from can be thrown away. Destination pubkey hash acts as network address for routing. Destination pubkey only decrypts, never signs. Sucessful decryption of session key is proof of private key possession and identity.
 
 Todo:
-- this is transport layer proticol. Proticol layer over this layer sends traffic over multiple paths to the destination, using fountain coding.
+- this is transport layer protocol. protocol layer over this layer sends traffic over multiple paths to the destination, using fountain coding.
 - since origin determines path, origin can optimize for latency or throughput and other criteria
-- traffic and handshake should be disguised as SSL proticol to deter throttling by ISPs
+- traffic and handshake should be disguised as SSL protocol to deter throttling by ISPs
 
 Privacy
 =======
@@ -134,7 +134,7 @@ Q&A
 
 Why not Bitcoin? Why build the network on a new coin?
 
-We see no advantage in developing the darknet routing proticol on a Bitcoin payment system and there are several disadvantages compared to emerging alternatives.
+We see no advantage in developing the darknet routing protocol on a Bitcoin payment system and there are several disadvantages compared to emerging alternatives.
 
 - Bitcoin does not offer developers and early adapters the economic rewards of a new coin.
 - Bitcoin cannot fund the required infrastructure investments. The Bitcoin community has been fundamentally unable to fund critical infrastructure projects. Infrastructure projects such as coinjoin have been absymal failures at raising funds for development. The project must be self funding to succeed and cannot rely upon donations from the Bitcoin community.
@@ -148,7 +148,7 @@ We see no advantage in developing the darknet routing proticol on a Bitcoin paym
 Tradeoffs
 =========
 
-The Skycoin Darknet proticol is low latency, high throughput and offers a greater degree of privacy than previous systems. However to achieve these goals, several tradeoffs were necessary.
+The Skycoin Darknet protocol is low latency, high throughput and offers a greater degree of privacy than previous systems. However to achieve these goals, several tradeoffs were necessary.
 
 1. Routing decisions are pushed to the origin node instead of the network
 2. Rasberry PIs can only forward 150 Mb/s of second of traffic due to encryption overhead. FGPA hardware could accelerate this to GB/s.
