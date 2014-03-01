@@ -7,6 +7,46 @@ The Skycoin Darknet is a high performance, privacy preserving routing proticol i
 
 The proticol is designed to operate over legacy internet and nodes physically connected by wifi. The long term objective is to create long distance point-to-point wifi connections which bypass existing internet providers.
 
+User Stories: Link Aggregation
+===============================
+
+Bob has a 2 Mb/s internet connection. It takes Bob minutes to load Youtube videos. Bob and has five neighbors with 2 Mb/s connections. They install Skycoin nodes. Bob's Skycoin node connects to his neighbors through wifi and aggregates the bandwidth, giving Bob a 12 Mb/s connection.
+
+Bob receives Skycoin for relaying traffic and expends Skycoin for using network resources.
+
+Notes:
+- Bob's IPv4 traffic tunneled over the Darknet enters the normal internet at a local server on a network backbone
+- Bob's Skycoin connection appears as a VPN connection on his computer
+- Bob's traffic may take multiple routes between his home and the IPv4 Gateway node
+- With $150 in equipment, Bob can connect to nodes up to five miles away at 40 Mb/s
+- With $1500 in equipment, Bob can connect to nodes up to 15 miles away at 1.4 Gb/s
+
+User Stories: Backhaul
+======================
+
+Alice lives in a large city, 2 miles from a colocation center with terabytes per second of fiber optic backbone.
+
+Alice's internet speed is 2 Mb/s.
+
+Alice had cheaper, faster internet, before the FCC stuck down the common carrier access rules. Now, Alice only has one choice for internet. Alice's national ISP is the only ISP after the merger of the two largest cable companies in America.
+
+After the merger the CFO stated "people dont want faster internet", raised prices and put in place bandwidth caps. Alice pays $0.30 per GB for going over her 100 GB bandwidth cap.
+
+Alice's ISP has been getting worse after net neutrality was struck down by a secret backdoor international trade agreement, that even members of congress were not allowed to see or vote on before it was signed.
+
+Alice's Youtube and Netflix videos are loading slower than ever before. Alice's ISP has started throttling Netflix, Youtube and Bitorrent while publicly denying it. 
+
+Alice's ISP has begun tracking every website she visits, recording her personal information and selling it to the NSA and marketing companies. Alice's ISP has been stealing revenue from the websites Alice visits, by replacing the website's ads with its own advertisements. Alice's ISP is starting to blacklist websites it doesnt like.
+
+Alice hears about Skycoin, finds another Skycoin user with an office in the colocation center. Alice pays $1500 and installs 1.4 Gb/second Ubiquity airFiber antenna on her roof to bridge the distance between her and the fiber backbone.  Alice's connection acts as the backhaul for her neighborhood's local Skycoin mesh.
+
+Alice cancels her internet service.
+
+User Story: Internet Kill Switch
+=================================
+
+<todo>
+
 Hardware
 ========
 
@@ -22,33 +62,37 @@ Wifi Devices:
 - TP-LINK TL-WN722N (external antenna support for long distance directional links)
 
 Directional Antenna:
-- TP-LINK TL-ANT2424B 24dBi 60 cm Directional Grid Parabolic Antenna
+- TP-LINK TL-ANT2424B 24dBi 60 cm Directional Grid Parabolic Antenna. Up to 10 mile range for line of sight.
 - see: http://fabfi.fabfolk.com/
+
+Future:
+- Free Space Optics (see http://en.wikipedia.org/wiki/RONJA )
+- Software Defined Radio (SDR)
 
 Technical Objectives
 ====================
 
-Implementation Details:
+Implementation:
 - prototype in Golang
 - extremely simple. less than 2000 lines of code
 - minimal number of dependencies
 
 Design Goals:
-- Open Access Wifi mesh networks
+- Privacy preserving
 - coin incentives for provisioning bandwidth, storage and backhaul
+- Open Access Wifi mesh networks
 - Designed to bridge last mile between the network backbone and home
-- resistant to latency, high packet loss and low reliability connections
 - runs on Rasberry Pi and Ubiquity Hardware
 - "zeroconf". Plug in and runs, no configuration
 - difficult to detect and throttle
 
 Technical Aspects:
 - uses pubkey hashes as network addresses
+- Link Aggregation (ability to aggregate bandwidth from multiple connections)
 - instant, low overhead, distributed bandwidth micropayments using off blockchain transactions
 - link layer, does not define routing
 - store and forward?
 - compatibility bridge with IPv6 networks
-- Link Aggregation (ability to aggregate bandwidth from multiple connections)
 
 Security:
 - Link layer encryption between nodes
@@ -65,7 +109,7 @@ The protocol is
 - simple (no backdoors)
 - fast
 - secure
-- use the minimum number of crytographic primitives
+- use the minimum number of cryptographic primitives
 
 Link Layer:
 - Open TCP socket to remote host. You need their pubkey
@@ -75,7 +119,7 @@ Link Layer:
 - there is seperate session key for each direction of communication
 
 Routing:
-- At each node, a "path" is established. You register next node in path and get 32 bit int. The 32 bit int when prefixed on packet determines the node packet will be forwarded to.
+- At each node, a "path" is established. For each node in a route, you register the next node and receive a 32 bit int. The 32 bit int when prefixed on packet determines the node packet will be forwarded to.
 - Each node decodes the packet and pops off first 4 bytes to determine next node to transport packet to.
 
 Payment for Transport:
@@ -87,7 +131,7 @@ Note:
 - route is determined by origin of traffic
 - the destination can communicate back to origin but cannot identify origin node
 - payment overhead is 120 bytes per payment
-- per hop overhead is 20 bytes (exercise for reader: make it constant)
+- per hop overhead is 4 bytes (exercise for reader: make it constant)
 - public keys are never exposed as plaintext in protocol
 - cannot communicate with node without node public key
 - 32 bit route path prefix information should be obfuscated by shared secret with node
@@ -102,7 +146,7 @@ Todo:
 Privacy
 =======
 
-A user operating a Skycoin Wifi access point allows any user in range to connect through that access point. The access point operator cannot determine the nature of the traffic passing through the access point because it is encrypted. Furthermore the recipient of the traffic is unable to determine that the path of the traffic passed through the access point.
+A user operating a Skycoin Wifi access point allows any user in range to connect through that access point. The access point operator cannot determine the nature of the traffic passing through the access point because it is encrypted. The recipient of the traffic is unable to determine that the path of the traffic passed through the access point.
 
 This effectively removes legal liability for operating public access points. The operator neither has any information about the traffic being relayed nor can the recipient of traffic identify the operator of the network entry point.
 
@@ -110,8 +154,8 @@ Furthermore, with the addition of a mandatory hop (a "guard node") it is impossi
 
 Summary:
 - Skycoin Darknet Wifi access points are public by default
-- Access point operators cannot see contents of traffic routed through the access point
-- Access point operators cannot see the destination of traffic routed through the access point
+- Access point operators cannot see contents of traffic through the access point
+- Access point operators cannot see destination of traffic routed through the access point
 - The recipient of traffic cannot determine the origin or path the data traveled through the network
 - Using "guard nodes" ISPs cannot determine that traffic from a particular access point is being relayed through a particular terminating connection (cable modem)
 
