@@ -105,7 +105,7 @@ Routing v0.1:
 Routing v0.2:
 - At each node, a "path" is established. For each node in route, the next node is registered and associated with 8 byte int determined by originator. Originator receives 8 byte salt. Salt is hashing or compression function (ex. XOR).
 - if P1 is the 8 byte int denoting packet prefix from incoming node, S is the salt, P2 is int denoting prefix on packets in transit to next node, then the next node is denoted Salt(P1, S). Return path is Salt(S,P2). Salt is chosen by transit nodes to avoid collision with other paths through node. Salt may be chosen to avoid collisions in router hash table for constant look up time.
-- If D is prefix on packet, Salt(P2, D) is forward route and Salt(P1, D) is backwards route. Backwords and forward route ids may be different depending on Salt (Xor only requires 1, compression functions require 2)
+- If D is prefix on packet, Salt(P2, D) is forward route and Salt(P1, D) is backwards route. Backwards and forward route ids may be different depending on Salt (Xor only requires 1, compression functions seperate forward and backwards paths)
 - two way traffic. destination can communicate back to origin without knowing salt values or return path. Fixed 8 bytes for route information.
 
 Payment for Transport:
