@@ -74,7 +74,7 @@ Technical Objectives
 
 Implementation:
 - prototype in Golang
-- extremely simple. less than 2000 lines of code
+- extremely simple
 - minimal number of dependencies
 
 Design Goals:
@@ -82,49 +82,34 @@ Design Goals:
 - coin incentives for provisioning bandwidth, storage and backhaul
 - Open Access Wifi mesh networks
 - Designed to bridge last mile between the network backbone and home
-- runs on Rasberry Pi and Ubiquity Hardware
 - "zeroconf". Plug in and runs, no configuration
 - difficult to detect and throttle
 
-Technical Aspects:
-- uses pubkey hashes as network addresses
-- Link Aggregation (ability to aggregate bandwidth from multiple connections)
-- instant, low overhead, distributed bandwidth micropayments using off blockchain transactions
-- link layer, does not define routing
-- store and forward?
-- compatibility bridge with IPv6 networks
-
-Security:
-- Link layer encryption between nodes
-- End to End Encryption
-- Post Public Key encryption primitives
-
-Protocol Draft
+Protocol v0.2
 ==============
 
-Here is whole protocol.
-
 The protocol is
-- easy to implement in C
-- simple (no backdoors)
+- simple
 - fast
 - secure
-- use the minimum number of cryptographic primitives
 
 Link Layer:
-- Open TCP socket to remote host. You need their pubkey
-- First packet: encode session key as point on a secp256k1 elliptic curve using peer's public key. encrypt your pubkey with ChaCha20 using the session key. Send packet
-- Response Packet: destination encodes second session key with your public key and sends response packet. This wrapper is encrypted with the ChaCha20 key you sent previously.
+- Open TCP socket to remote host. Using ECDH with curve secp256k1 to establish ChaCha20 symmetric key session key.
 - You now have bidirectional connection to node for sending and receiving data
-- there is seperate session key for each direction of communication
 
-Routing:
-- At each node, a "path" is established. For each node in a route, you register the next node and receive a 32 bit int. The 32 bit int when prefixed on packet determines the node packet will be forwarded to.
-- Each node decodes the packet and pops off first 4 bytes to determine next node to transport packet to.
+Routing v0.1:
+- At each node, a "path" is established. For each node in route, the next node is registered and associated by 4 byte int. The 4 byte int prefixed on packet determines the node packet will be forwarded to.
+- Each node decodes the packet, pops off first 4 bytes to determine next node to transport packet to. Simple lookup table. Routing decisions pushed to origin.
+- traffic is one way
+
+Routing v0.2:
+- At each node, a "path" is established. For each node in route, the next node is registered and associated with 8 byte int determined by originator. Originator receives 8 byte salt. Salt is invertable hashing function (ex. XOR).
+- if P1 is the 8 byte int denoting incoming node, S is the salt, P2 is int denoting next node in hop, then the next node is denoted Salt(P1, S). Return path is Salt(S,P2). Salt is chosen by transit nodes to avoid collision with other paths through node.
+- two way traffic. destination can communicate back to origin without knowing salt or return path. Fixed 8 bytes for route information.
 
 Payment for Transport:
 - Nodes keep track of how much traffic goes each way for the route
-- The person intiating the route makes an escrowed "confidence payment" with a 120 byte off block chain Skycoin Transaction.
+- The person intiating route makes an escrowed "confidence payment" with a 120 byte off block chain Skycoin Transaction.
 - The origin node clears payment with the node every few minutes
 
 Note:
