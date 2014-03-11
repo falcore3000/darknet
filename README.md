@@ -54,8 +54,7 @@ For development, we are using the following
 
 Platforms:
 - Debian
-- Raspberry PI
-- Beagle Boards
+- Raspberry PI / Beagle Boards
 
 Wifi Devices:
 - Edimax EW-7811Un (good linux support)
@@ -66,8 +65,9 @@ Directional Antenna:
 - see: http://fabfi.fabfolk.com/
 
 Future:
-- Free Space Optics (see http://en.wikipedia.org/wiki/RONJA )
-- Software Defined Radio (SDR)
+- RONJA (see http://en.wikipedia.org/wiki/RONJA )
+- HackRF http://kck.st/1eb5z2R
+- Li-Fi http://en.wikipedia.org/wiki/Li-Fi
 
 Technical Objectives
 ====================
