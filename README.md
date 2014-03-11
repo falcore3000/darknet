@@ -3,9 +3,9 @@
 Darknet Plan
 ============
 
-The Skycoin Darknet is a high performance, privacy preserving routing proticol inspired by cjdns. Users receive skycoin for contributing resources to the network and expend resources for using network resources.
+The Skycoin Darknet is a high performance, privacy preserving routing protocol inspired by cjdns. Users receive skycoin for contributing resources to the network and expend resources for using network resources.
 
-The proticol is designed to operate over legacy internet and nodes physically connected by wifi. The long term objective is to create long distance point-to-point wifi connections which bypass existing internet providers.
+The protocol is designed to operate over legacy internet and nodes physically connected by wifi. The long term objective is to create long distance point-to-point wifi connections which bypass existing internet providers.
 
 User Stories: Link Aggregation
 ===============================
