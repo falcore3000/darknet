@@ -34,3 +34,19 @@ There are two layers of darknet.
 If someone has a really fat pipe link layer is really all that's needed, it's a way to earn credit for backhaul.  Once it gets to their darknet gateway it's out on the clearnet and everything is OK.
 
 <todo> Fix these names, as they're not right
+
+
+Necessary Information for Routing
+=================================
+
+Cases:
+
+1.  None is needed, just get data to the gateway and it's on the clearnet, things are simple.
+
+2.  In this case there needs to be some way for the darknet client to determine the route to the darknet gateway, all over darknet links.
+
+3.  When all darknet clients within wifi range of one another are on the same ISP the client priority is finding the "closest" (or fastest) darknet aggregator to maximize download speed.  In many cases this aggregator will be only a few hops away from everyone since everyone is on the same ISP.  A simple vote would work, the client asks for everyone's closest aggregator (or this is propagated automatically on occasion) and selects the one with the biggest count.  In the same-ISP case this should be a vote percentage of 100% or very close for the winner.
+
+4.  When all darknet clients within wifi range are not on the same ISP the goal remains the same but the method of getting there changes.  A simple closest-aggregator-vote might have a winning percentage of 20-80% depending on the mix.  At 80% we might ignore a bit of extra speed, but at 20% it would be very unfortunate to ignore.  The search space must be expanded to find a good aggregator.  I am not sure precisely how to quantify the tradeoffs here.  The more hops or further distance you're willing to go the more gateways that can participate thus increasing the last-mile speed.  But going further across the clearnet to get to an aggregator from a gateway increases the odds of at least one of the gateways being bandwidth-limited to the gateway which then slows things down.
+
+5.  Here things are very similar to case 3.  The vote should be very much in favor of the aggregator provided by the network admin.
